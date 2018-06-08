@@ -154,7 +154,7 @@ class FactionCommands {
 
                     if ($args[0] == "invite") {
                         if (!isset($args[1])) {
-                            $sender->sendMessage($this->plugin->formatMessage("Usage: /f invite <player>"));
+                            $sender->sendMessage($this->plugin->formatMessage("§fUsage:§b /f invite <player>"));
                             return true;
                         }
                         if ($this->plugin->isFactionFull($this->plugin->getPlayerFaction($playerName))) {
@@ -163,16 +163,16 @@ class FactionCommands {
                         }
                         $invited = $this->plugin->getServer()->getPlayerExact($args[1]);
                         if (!($invited instanceof Player)) {
-                            $sender->sendMessage($this->plugin->formatMessage("Player not online"));
+                            $sender->sendMessage($this->plugin->formatMessage("§4Error §c, §7That Player is §bOffline"));
                             return true;
                         }
                         if ($this->plugin->isInFaction($invited->getName()) == true) {
-                            $sender->sendMessage($this->plugin->formatMessage("Player is currently in a faction"));
+                            $sender->sendMessage($this->plugin->formatMessage("§4Error §c, §7That Player Is In Another Faction"));
                             return true;
                         }
                         if ($this->plugin->prefs->get("OnlyLeadersAndOfficersCanInvite")) {
                             if (!($this->plugin->isOfficer($playerName) || $this->plugin->isLeader($playerName))) {
-                                $sender->sendMessage($this->plugin->formatMessage("Only your faction leader/officers can invite"));
+                                $sender->sendMessage($this->plugin->formatMessage("§eFaction Permisions: §7Only Leaders And Officers Are Set to Invite"));
                                 return true;
                             }
                         }
@@ -1061,8 +1061,8 @@ class FactionCommands {
                     /////////////////////////////// ABOUT ///////////////////////////////
 
                     if (strtolower($args[0] == 'about')) {
-                        $sender->sendMessage(TextFormat::GREEN . "[ORIGINAL] FactionsPro v1.3.2 by " . TextFormat::BOLD . "Tethered_");
-                        $sender->sendMessage(TextFormat::GOLD . "[MODDED] This version by MPE and " . TextFormat::BOLD . "Awzaw");
+                        $sender->sendMessage(TextFormat::GREEN . "[Archon] FactionsPro v1.3.2 by " . TextFormat::BOLD . "Tethered_");
+                        $sender->sendMessage(TextFormat::GOLD . "[CubeX] This version by xXCaulDevsYT and " . TextFormat::BOLD . "EmeraldAssasinYT");
                     }
                     ////////////////////////////// CHAT ////////////////////////////////
                     if (strtolower($args[0]) == "chat" or strtolower($args[0]) == "c") {
@@ -1126,13 +1126,13 @@ class FactionCommands {
                         $message = $array["message"];
                         $leader = $this->plugin->getLeader($faction);
                         $numPlayers = $this->plugin->getNumberOfPlayers($faction);
-                        $sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "-------INFORMATION-------" . TextFormat::RESET);
-                        $sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "|[Faction]| : " . TextFormat::GREEN . "$faction" . TextFormat::RESET);
-                        $sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "|(Leader)| : " . TextFormat::YELLOW . "$leader" . TextFormat::RESET);
-                        $sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "|^Players^| : " . TextFormat::LIGHT_PURPLE . "$numPlayers" . TextFormat::RESET);
-                        $sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "|&Strength&| : " . TextFormat::RED . "$power" . " STR" . TextFormat::RESET);
-                        $sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "|*Description*| : " . TextFormat::AQUA . TextFormat::UNDERLINE . "$message" . TextFormat::RESET);
-                        $sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "-------INFORMATION-------" . TextFormat::RESET);
+                        $sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "§e§l=============================" . TextFormat::RESET);
+                        $sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . " §r§bFaction : " . TextFormat::GREEN . "$faction" . TextFormat::RESET);
+                        $sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . " §r§cOwner : " . TextFormat::YELLOW . "$leader" . TextFormat::RESET);
+                        $sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . " §r§bPlayers : " . TextFormat::LIGHT_PURPLE . "$numPlayers" . TextFormat::RESET);
+                        $sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . " §r§cPower : " . TextFormat::RED . "$power" . " STR" . TextFormat::RESET);
+                        $sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . " §r§cDescription : " . TextFormat::AQUA . TextFormat::UNDERLINE . "$message" . TextFormat::RESET);
+                        $sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "§e§l==============================" . TextFormat::RESET);
                     } else {
                         if (!$this->plugin->isInFaction($playerName)) {
                             $sender->sendMessage($this->plugin->formatMessage("You must be in a faction to use this!"));
@@ -1145,23 +1145,23 @@ class FactionCommands {
                         $message = $array["message"];
                         $leader = $this->plugin->getLeader($faction);
                         $numPlayers = $this->plugin->getNumberOfPlayers($faction);
-                        $sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "-------INFORMATION-------" . TextFormat::RESET);
+                        $sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "§l§cInformation On Another faction" . TextFormat::RESET);
                         $sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "|[Faction]| : " . TextFormat::GREEN . "$faction" . TextFormat::RESET);
                         $sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "|(Leader)| : " . TextFormat::YELLOW . "$leader" . TextFormat::RESET);
                         $sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "|^Players^| : " . TextFormat::LIGHT_PURPLE . "$numPlayers" . TextFormat::RESET);
                         $sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "|&Strength&| : " . TextFormat::RED . "$power" . " STR" . TextFormat::RESET);
                         $sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "|*Description*| : " . TextFormat::AQUA . TextFormat::UNDERLINE . "$message" . TextFormat::RESET);
-                        $sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "-------INFORMATION-------" . TextFormat::RESET);
+                        $sender->sendMessage(TextFormat::GOLD . TextFormat::ITALIC . "§l§cInformation On Another faction" . TextFormat::RESET);
                     }
                     return true;
                 }
                 if (strtolower($args[0]) == "help") {
-                        $sender->sendMessage(TextFormat::RED . "\n/f about\n/f accept\n/f overclaim [Takeover the plot of the requested faction]\n/f claim\n/f create <name>\n/f del\n/f demote <player>\n/f deny");
-                        $sender->sendMessage(TextFormat::RED . "\n/f home\n/f help <page>\n/f info\n/f info <faction>\n/f invite <player>\n/f kick <player>\n/f leader <player>\n/f leave");
-                        $sender->sendMessage(TextFormat::RED . "\n/f sethome\n/f unclaim\n/f unsethome\n/f ourmembers - {Members + Statuses}\n/f ourofficers - {Officers + Statuses}\n/f ourleader - {Leader + Status}\n/f allies - {The allies of your faction");
-                        $sender->sendMessage(TextFormat::RED . "\n/f desc\n/f promote <player>\n/f allywith <faction>\n/f breakalliancewith <faction>\n\n/f allyok [Accept a request for alliance]\n/f allyno [Deny a request for alliance]\n/f allies <faction> - {The allies of your chosen faction}");
+                        $sender->sendMessage(TextFormat::GREEN . "\n/f about\n/f accept\n/f overclaim [Takeover the plot of the requested faction]\n/f claim\n/f create <name>\n/f del\n/f demote <player>\n/f deny");
+                        $sender->sendMessage(TextFormat::YELLOW . "\n/f home\n/f help <page>\n/f info\n/f info <faction>\n/f invite <player>\n/f kick <player>\n/f leader <player>\n/f leave");
+                        $sender->sendMessage(TextFormat::LIGHT_PURPLE . "\n/f sethome\n/f unclaim\n/f unsethome\n/f ourmembers - {Members + Statuses}\n/f ourofficers - {Officers + Statuses}\n/f ourleader - {Leader + Status}\n/f allies - {The allies of your faction");
+                        $sender->sendMessage(TextFormat::BLUE . "\n/f desc\n/f promote <player>\n/f allywith <faction>\n/f breakalliancewith <faction>\n\n/f allyok [Accept a request for alliance]\n/f allyno [Deny a request for alliance]\n/f allies <faction> - {The allies of your chosen faction}");
                         $sender->sendMessage(TextFormat::RED . "\n/f membersof <faction>\n/f officersof <faction>\n/f leaderof <faction>\n/f say <send message to everyone in your faction>\n/f pf <player>\n/f topfactions");
-                        $sender->sendMessage(TextFormat::RED . "\n/f forceunclaim <faction> [Unclaim a faction plot by force - OP]\n\n/f forcedelete <faction> [Delete a faction by force - OP]");
+                        $sender->sendMessage(TextFormat::AQUA . "\n/f forceunclaim <faction> [Unclaim a faction plot by force - OP]\n\n/f forcedelete <faction> [Delete a faction by force - OP]");
                         return true;
                 }
                 return true;
